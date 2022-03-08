@@ -5,21 +5,18 @@ import {PokemonAPIService} from '../../api/pokemon-api.service';
 @Component({
   selector: 'app-pokemon-detail-page',
   templateUrl: './pokemon-detail-page.component.html',
-  styleUrls: ['./pokemon-detail-page.component.css']
+  styleUrls: ['./pokemon-detail-page.component.css'],
 })
 export class PokemonDetailPageComponent implements OnInit {
   pokemon: any;
 
   constructor(
     private route: ActivatedRoute,
-    private pokemonApi: PokemonAPIService
     ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.pokemonApi.findById(params.pokemonId).subscribe(res => {
-        this.pokemon = res.data;
-      });
+    this.route.data.subscribe(data => {
+      this.pokemon = data.pokemon;
     });
   }
 

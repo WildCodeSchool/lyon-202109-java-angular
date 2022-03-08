@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {pluck} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class PokemonAPIService {
   }
 
   findById(pokemonId: string): Observable<any> {
-    return this.http.get(`${PokemonAPIService.BASE_URL}/cards/${pokemonId}`);
+    return this.http.get(`${PokemonAPIService.BASE_URL}/cards/${pokemonId}`)
+      .pipe(
+        pluck('data'),
+        pluck('images')
+      );
   }
 }
