@@ -1,0 +1,8 @@
+<div>
+  <app-search (search)="search($event)"></app-search>
+  <div class="pokemons-container">
+    <a *ngFor="let pokemon of pokemons" class="pokemon-card" [routerLink]="['/details', pokemon.id]">
+      <img [src]="pokemon.images.small"/>
+    </a>
+  </div>
+</div>
